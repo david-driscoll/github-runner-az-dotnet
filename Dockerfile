@@ -2,7 +2,8 @@ FROM myoung34/github-runner:latest
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS --install-dir /usr/share/dotnet
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS --install-dir /usr/share/dotnet \
+    && apt install tree -y
 
 
 ENV DOTNET_ROOT "/usr/share/dotnet"
