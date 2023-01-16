@@ -29,6 +29,6 @@ jobs:
           file: ./Dockerfile
           context: .
           push: true
-          tags: github-runner-az-dotnet:latest
+          tags: daviddriscoll/github-runner-az-dotnet:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
