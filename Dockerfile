@@ -17,8 +17,6 @@ ENV DOTNET_ROOT "/usr/share/dotnet"
 ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:/root/.nvm/:/root/.nvm/versions/node/v18.15.0/bin/:$PATH"
 ENV NUGET_PACKAGES "/nuget"
 
-RUN echo $PATH
-
 #RUN echo 'export DOTNET_ROOT=/usr/share/dotnet' >> ~/.bashrc
 #RUN echo 'export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools' >> ~/.bashrc
 
