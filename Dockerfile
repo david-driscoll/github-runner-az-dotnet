@@ -4,6 +4,7 @@ ENV NVM_VERSION=0.39.5
 ENV PWSH_VERSION=7.3.7
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS --install-dir /usr/share/dotnet \
     && apt install tree -y
