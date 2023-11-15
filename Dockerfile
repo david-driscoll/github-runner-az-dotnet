@@ -1,7 +1,7 @@
 FROM myoung34/github-runner:latest
-ENV NODE_VERSION=18.18.0
+ENV NODE_VERSION=20.9.0
 ENV NVM_VERSION=0.39.5
-ENV PWSH_VERSION=7.3.7
+ENV PWSH_VERSION=7.3.9
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet \
