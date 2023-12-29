@@ -14,7 +14,7 @@ ARG RUNNER_CONTAINER_HOOKS_VERSION="0.5.0"
 ARG DOCKER_VERSION=24.0.6
 ARG BUILDX_VERSION=0.11.2
 
-RUN apt update -y && apt install curl unzip sudo -y
+RUN apt update -y && apt install curl unzip -y
 
 WORKDIR /actions-runner
 RUN export RUNNER_ARCH=${TARGETARCH} \
@@ -48,8 +48,8 @@ ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
 ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
-RUN apt update && apt install unzip wget curl tree -y
-RUN curl -sL https://aka.ms/InstallAzureCliDeb | bash \
+RUN apt update && apt install unzip wget curl tree sudo -y
+RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
