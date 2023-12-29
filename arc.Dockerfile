@@ -72,7 +72,7 @@ ENV ImageOS=ubuntu22
 
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends sudo lsb-release \
-    && curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
+    && curl -sL https://aka.ms/InstallAzureCliDeb | bash \
     && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --disabled-password --gecos "" --uid 1001 runner \
