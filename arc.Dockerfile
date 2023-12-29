@@ -49,8 +49,7 @@ ENV DOTNET_ROOT "/usr/share/dotnet"
 ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update && apt install unzip wget curl tree -y
-RUN curl -L https://aka.ms/InstallAzureCli | bash \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
+RUN curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && dotnet tool install --global PowerShell
@@ -72,9 +71,8 @@ ENV ACTIONS_RUNNER_PRINT_LOG_TO_STDOUT=1
 ENV ImageOS=ubuntu22
 
 RUN apt-get update -y \
-    && apt-get install -y --no-install-recommends \
-    sudo \
-    lsb-release \
+    && apt-get install -y --no-install-recommends sudo lsb-release \
+    && curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --disabled-password --gecos "" --uid 1001 runner \
