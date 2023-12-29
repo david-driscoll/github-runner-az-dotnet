@@ -44,8 +44,9 @@ ENV NODE_VERSION=20.10.0
 ENV NVM_VERSION=0.39.7
 ENV PWSH_VERSION=7.4.0
 
+ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
-ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:/root/.nvm/:/root/.nvm/versions/node/v${NODE_VERSION}/bin/:/opt/az/bin/:/usr/bin/:$PATH"
+ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update && apt install unzip wget curl tree -y
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
@@ -53,13 +54,6 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && dotnet tool install --global PowerShell
-
-ENV NVM_DIR=/root/.nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
-    && . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION} \
-    && . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION} \
-    && . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION} \
-    && node --version && npm --version && npx --version
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.24.0/op_linux_${ARCH}_v2.24.0.zip" -O op.zip \
@@ -98,3 +92,9 @@ COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib
 RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
+    && . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION} \
+    && . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION} \
+    && . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION} \
+    && node --version && npm --version && npx --version
