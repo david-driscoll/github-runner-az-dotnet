@@ -45,7 +45,7 @@ ENV NVM_VERSION=0.39.7
 ENV PWSH_VERSION=7.4.0
 
 ENV DOTNET_ROOT "/usr/share/dotnet"
-ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:/root/.nvm/:/root/.nvm/versions/node/v${NODE_VERSION}/bin/:/usr/bin/:$PATH"
+ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:/root/.nvm/:/root/.nvm/versions/node/v${NODE_VERSION}/bin/:/opt/az/bin/:/usr/bin/:$PATH"
 
 RUN apt update && apt install unzip wget curl tree -y
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
