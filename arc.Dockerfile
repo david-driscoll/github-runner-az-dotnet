@@ -14,7 +14,7 @@ ARG RUNNER_CONTAINER_HOOKS_VERSION="0.5.0"
 ARG DOCKER_VERSION=24.0.6
 ARG BUILDX_VERSION=0.11.2
 
-RUN apt update -y && apt install curl unzip -y
+RUN apt update -y && apt install curl unzip sudo -y
 
 WORKDIR /actions-runner
 RUN export RUNNER_ARCH=${TARGETARCH} \
@@ -49,7 +49,8 @@ ENV DOTNET_ROOT "/usr/share/dotnet"
 ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update && apt install unzip wget curl tree -y
-RUN curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
+RUN curl -sL https://aka.ms/InstallAzureCliDeb | bash \
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && dotnet tool install --global PowerShell
@@ -71,8 +72,7 @@ ENV ACTIONS_RUNNER_PRINT_LOG_TO_STDOUT=1
 ENV ImageOS=ubuntu22
 
 RUN apt-get update -y \
-    && apt-get install -y --no-install-recommends sudo lsb-release \
-    && curl -sL https://aka.ms/InstallAzureCliDeb | bash \
+    && apt-get install -y --no-install-recommends lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --disabled-password --gecos "" --uid 1001 runner \
