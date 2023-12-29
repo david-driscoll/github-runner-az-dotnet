@@ -3,11 +3,13 @@ ENV NODE_VERSION=20.9.0
 ENV NVM_VERSION=0.39.5
 ENV PWSH_VERSION=7.3.9
 
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
+RUN apt install curl -y
+
+RUN apt install curl tree -y \
+    && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir /usr/share/dotnet \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet \
-    && apt install tree -y
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
 
 ENV NVM_DIR=/root/.nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
