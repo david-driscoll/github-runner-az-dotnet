@@ -48,7 +48,7 @@ ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
 ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
-RUN apt update && apt install unzip wget curl tree sudo -y
+RUN apt update && apt install unzip wget curl tree sudo git -y
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
