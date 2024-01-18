@@ -52,7 +52,7 @@ RUN apt update \
     && apt install software-properties-common -y \
     && add-apt-repository ppa:git-core/ppa \
     && apt update \
-    && apt install unzip wget curl tree sudo git -y
+    && apt install unzip wget curl tree sudo git netcat lsof -y
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
