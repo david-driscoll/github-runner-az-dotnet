@@ -57,10 +57,7 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
-    && dotnet tool install --global PowerShell \
-    && dotnet workload install android \
-    && dotnet workload install aspire \
-    && dotnet workload install wasm
+    && dotnet tool install --global PowerShell
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.24.0/op_linux_${ARCH}_v2.24.0.zip" -O op.zip \
