@@ -60,11 +60,7 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && dotnet tool install --global PowerShell \
     && dotnet workload install android \
     && dotnet workload install aspire \
-    && dotnet workload install ios \
-    && dotnet workload install maccatalyst \
-    && dotnet workload install macos \
     && dotnet workload install maui \
-    && dotnet workload install tvos \
     && dotnet workload install wasm
 
 RUN ARCH="amd64" \
