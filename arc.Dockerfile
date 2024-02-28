@@ -5,7 +5,7 @@ ARG TARGETARCH="amd64"
 
 # Replace value with the latest runner release version
 # source: https://github.com/actions/runner/releases
-ARG RUNNER_VERSION="2.311.0"
+ARG RUNNER_VERSION="2.314.1"
 ARG RUNNER_ARCH="x64"
 # Replace value with the latest runner-container-hooks release version
 # source: https://github.com/actions/runner-container-hooks/releases
