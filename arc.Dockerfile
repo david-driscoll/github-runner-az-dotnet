@@ -5,14 +5,14 @@ ARG TARGETARCH="amd64"
 
 # Replace value with the latest runner release version
 # source: https://github.com/actions/runner/releases
-ARG RUNNER_VERSION="2.314.1"
+ARG RUNNER_VERSION="2.316.1"
 ARG RUNNER_ARCH="x64"
 # Replace value with the latest runner-container-hooks release version
 # source: https://github.com/actions/runner-container-hooks/releases
 # ex: 0.3.1
-ARG RUNNER_CONTAINER_HOOKS_VERSION="0.5.0"
-ARG DOCKER_VERSION=24.0.6
-ARG BUILDX_VERSION=0.11.2
+ARG RUNNER_CONTAINER_HOOKS_VERSION="0.6.0"
+ARG DOCKER_VERSION=25.0.5
+ARG BUILDX_VERSION=0.14.0
 
 RUN apt update -y && apt install curl unzip -y
 
@@ -40,9 +40,9 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
 
 FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy
 
-ENV NODE_VERSION=20.10.0
+ENV NODE_VERSION=20.12.2
 ENV NVM_VERSION=0.39.7
-ENV PWSH_VERSION=7.4.0
+ENV PWSH_VERSION=7.4.2
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
