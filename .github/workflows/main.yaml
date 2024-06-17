@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           file: ./Dockerfile
           context: .
@@ -38,7 +38,7 @@ jobs:
           tags: daviddriscoll/github-runner-az-dotnet:latest
       - name: Build and push Arc
         id: arc_build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           file: ./arc.Dockerfile
           context: .
