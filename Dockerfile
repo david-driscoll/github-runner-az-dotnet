@@ -2,9 +2,9 @@ FROM myoung34/github-runner:latest@sha256:cbf192a95a6a9e38287fd8635cd68b303a4143
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.3.0
-# renovate: datasource=github-tags depName=nvm packageName=nvm-sh/nvm
+# renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.39.7
-# renovate: datasource=github-tags depName=nvm packageName=PowerShell/PowerShell
+# renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.4.3
 ENV OP_VERSION=2.29.0
 

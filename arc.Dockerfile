@@ -3,14 +3,14 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy as build
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
 
-# renovate: datasource=github-tags depName=runner packageName=actions/runner
+# renovate: datasource=github-releases depName=runner packageName=actions/runner
 ARG RUNNER_VERSION="2.316.1"
 ARG RUNNER_ARCH="x64"
-# renovate: datasource=github-tags depName=runner-container-hooks packageName=actions/runner-container-hooks
+# renovate: datasource=github-releases depName=actions/runner-container-hooks packageName=actions/runner-container-hooks
 ARG RUNNER_CONTAINER_HOOKS_VERSION=v0.6.1
-# renovate: datasource=github-tags depName=moby packageName=moby/moby
+# renovate: datasource=docker packageName=docker versioning=docker
 ARG DOCKER_VERSION=25.0.5
-# renovate: datasource=github-tags depName=buildx packageName=docker/buildx
+# renovate: datasource=github-releases depName=buildx packageName=docker/buildx
 ARG BUILDX_VERSION=0.14.0
 
 RUN apt update -y && apt install curl unzip -y
@@ -41,9 +41,9 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.3.0
-# renovate: datasource=github-tags depName=nvm packageName=nvm-sh/nvm
+# renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.39.7
-# renovate: datasource=github-tags depName=powershell packageName=PowerShell/PowerShell
+# renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.4.3
 ENV OP_VERSION=2.29.0
 
