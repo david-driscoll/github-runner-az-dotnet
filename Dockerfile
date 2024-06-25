@@ -1,8 +1,9 @@
 FROM myoung34/github-runner:latest@sha256:458ceb744e596542c6539392765eace36cf3917f43a0c2f80e827a0c7db20e79
 
-ENV NODE_VERSION=20.12.2
+ENV NODE_VERSION=22.3.0
 ENV NVM_VERSION=0.39.7
-ENV PWSH_VERSION=7.4.2
+ENV PWSH_VERSION=7.4.3
+ENV OP_VERSION=2.29.0
 
 
 RUN apt update \
@@ -28,7 +29,7 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && dotnet workload install aspire
 
 RUN ARCH="amd64" \
-    && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.24.0/op_linux_${ARCH}_v2.24.0.zip" -O op.zip \
+    && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
     && unzip -d op op.zip \
     && mv op/op /usr/local/bin \
     && rm -r op.zip op \
