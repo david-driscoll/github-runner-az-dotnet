@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["local>RocketSurgeonsGuild/.github:renovate-config"],
+      "automerge": true,
 
   "customManagers": [
     {
@@ -10,13 +11,6 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
       ]
-    }
-  ],
-  "packageRules": [
-    {
-      "matchManagers": ["docker"],
-      "matchPackageNames": ["myoung34/github-runner"],
-      "automerge": true
     }
   ]
 }
