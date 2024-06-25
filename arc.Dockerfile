@@ -3,15 +3,14 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy as build
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
 
-# Replace value with the latest runner release version
-# source: https://github.com/actions/runner/releases
+# renovate: datasource=github-tags depName=runner packageName=actions/runner
 ARG RUNNER_VERSION="2.316.1"
 ARG RUNNER_ARCH="x64"
-# Replace value with the latest runner-container-hooks release version
-# source: https://github.com/actions/runner-container-hooks/releases
-# ex: 0.3.1
+# renovate: datasource=github-tags depName=runner-container-hooks packageName=actions/runner-container-hooks
 ARG RUNNER_CONTAINER_HOOKS_VERSION="0.6.0"
+# renovate: datasource=github-tags depName=moby packageName=moby/moby
 ARG DOCKER_VERSION=25.0.5
+# renovate: datasource=github-tags depName=buildx packageName=docker/buildx
 ARG BUILDX_VERSION=0.14.0
 
 RUN apt update -y && apt install curl unzip -y
@@ -40,9 +39,13 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
 
 FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy
 
-ENV NODE_VERSION=20.12.2
+# renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
+ENV NODE_VERSION=22.3.0
+# renovate: datasource=github-tags depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.39.7
-ENV PWSH_VERSION=7.4.2
+# renovate: datasource=github-tags depName=powershell packageName=PowerShell/PowerShell
+ENV PWSH_VERSION=7.4.3
+ENV OP_VERSION=2.29.0
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
@@ -54,20 +57,19 @@ RUN apt update \
     && apt update \
     && apt install unzip wget curl tree sudo git netcat lsof -y
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
 
 RUN ARCH="amd64" \
-    && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.24.0/op_linux_${ARCH}_v2.24.0.zip" -O op.zip \
+    && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
     && unzip -d op op.zip \
     && mv op/op /usr/local/bin \
     && rm -r op.zip op \
     && groupadd -f onepassword-cli \
     && chgrp onepassword-cli /usr/local/bin/op \
-    && chmod g+s /usr/local/bin/op
+    && chmod g+s /usr/local/bin/op \
+    && op update
 
 ENV NUGET_PACKAGES "/nuget"
 

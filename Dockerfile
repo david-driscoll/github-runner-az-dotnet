@@ -1,10 +1,12 @@
 FROM myoung34/github-runner:latest@sha256:cbf192a95a6a9e38287fd8635cd68b303a4143b46937c09d85d8dc22f3c0b2b2
 
+# renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.3.0
+# renovate: datasource=github-tags depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.39.7
+# renovate: datasource=github-tags depName=nvm packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.4.3
 ENV OP_VERSION=2.29.0
-
 
 RUN apt update \
     && apt install software-properties-common -y \
@@ -22,8 +24,6 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/instal
     && node --version && npm --version && npx --version
 
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir ${DOTNET_ROOT} \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
@@ -35,7 +35,8 @@ RUN ARCH="amd64" \
     && rm -r op.zip op \
     && groupadd -f onepassword-cli \
     && chgrp onepassword-cli /usr/local/bin/op \
-    && chmod g+s /usr/local/bin/op
+    && chmod g+s /usr/local/bin/op \
+    && op update
 
 ENV NUGET_PACKAGES "/nuget"
 
