@@ -1,4 +1,4 @@
-FROM myoung34/github-runner:latest@sha256:458ceb744e596542c6539392765eace36cf3917f43a0c2f80e827a0c7db20e79
+FROM myoung34/github-runner:latest@sha256:cbf192a95a6a9e38287fd8635cd68b303a4143b46937c09d85d8dc22f3c0b2b2
 
 ENV NODE_VERSION=20.12.2
 ENV NVM_VERSION=0.39.7
