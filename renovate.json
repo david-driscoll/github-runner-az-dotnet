@@ -1,4 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>RocketSurgeonsGuild/.github:renovate-config"]
+  "extends": ["local>RocketSurgeonsGuild/.github:renovate-config"],
+
+  "packageRules": [
+    {
+      "matchManagers": ["docker"],
+      "matchPackageNames": ["myoung34/github-runner"],
+      "automerge": true
+    }
+  ]
 }
