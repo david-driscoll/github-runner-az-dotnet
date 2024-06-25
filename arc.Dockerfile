@@ -9,7 +9,7 @@ ARG RUNNER_ARCH="x64"
 # renovate: datasource=github-tags depName=runner-container-hooks packageName=actions/runner-container-hooks
 ARG RUNNER_CONTAINER_HOOKS_VERSION=v0.6.1
 # renovate: datasource=github-tags depName=moby packageName=moby/moby
-ARG DOCKER_VERSION=25.0.5
+ARG DOCKER_VERSION=26.1.4
 # renovate: datasource=github-tags depName=buildx packageName=docker/buildx
 ARG BUILDX_VERSION=0.14.0
 
