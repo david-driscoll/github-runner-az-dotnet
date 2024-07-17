@@ -100,7 +100,7 @@ RUN adduser --disabled-password --gecos "" --uid 1001 runner \
 
 WORKDIR /home/runner
 ENV NUGET_FALLBACK_PACKAGES "/usr/share/dotnet/sdk/NuGetFallbackFolder;/root/.nuget/packages"
-ENV NUGET_PACKAGES "/home/runner/.nuget"
+# ENV NUGET_PACKAGES "/home/runner/.nuget"
 
 COPY --chown=runner:docker --from=build /actions-runner .
 COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib/docker/cli-plugins/docker-buildx
