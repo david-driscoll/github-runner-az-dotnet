@@ -60,17 +60,17 @@ RUN apt update \
     && apt install unzip wget curl tree sudo git netcat lsof -y
 
 
-WORKDIR /.temp
-COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
-Copy ./.config/dotnet-tools.json ./.config/dotnet-tools.json
+# WORKDIR /.temp
+# COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
+# Copy ./.config/dotnet-tools.json ./.config/dotnet-tools.json
 
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
-    && dotnet workload install aspire \
-    && dotnet restore \
-    && dotnet tool restore \
-    && rm -rf /.temp
+    && dotnet workload install aspire
+    # && dotnet restore \
+    # && dotnet tool restore \
+    # && rm -rf /.temp
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
