@@ -105,7 +105,6 @@ ENV NUGET_FALLBACK_PACKAGES "/usr/share/dotnet/sdk/NuGetFallbackFolder;/root/.nu
 COPY --chown=runner:docker --from=build /actions-runner .
 COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib/docker/cli-plugins/docker-buildx
 
-RUN mkdir -p /home/runner/.nuget
 RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner
