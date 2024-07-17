@@ -46,6 +46,8 @@ ENV NVM_VERSION=0.39.7
 # renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.4.3
 ENV OP_VERSION=2.29.0
+# renovate: datasource=github-tags depName=dotnet-sdk packageName=dotnet/sdk
+ENV DOTNET_SDK_VERSION=8.0.303
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT "/usr/share/dotnet"
@@ -56,10 +58,19 @@ RUN apt update \
     && add-apt-repository ppa:git-core/ppa \
     && apt update \
     && apt install unzip wget curl tree sudo git netcat lsof -y
+
+
+WORKDIR /.temp
+COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
+Copy ./.config/dotnet-tools.json ./.config/dotnet-tools.json
+
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
-    && dotnet workload install aspire
+    && dotnet workload install aspire \
+    && dotnet restore \
+    && dotnet tool restore \
+    && rm -rf /.temp
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
@@ -70,8 +81,6 @@ RUN ARCH="amd64" \
     && chgrp onepassword-cli /usr/local/bin/op \
     && chmod g+s /usr/local/bin/op \
     && op update
-
-# ENV NUGET_PACKAGES "/nuget"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV RUNNER_MANUALLY_TRAP_SIG=1
@@ -90,10 +99,13 @@ RUN adduser --disabled-password --gecos "" --uid 1001 runner \
     && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
 
 WORKDIR /home/runner
+ENV NUGET_FALLBACK_PACKAGES "/usr/share/dotnet/sdk/NuGetFallbackFolder;/root/.nuget/packages"
+ENV NUGET_PACKAGES "/home/runner/.nuget"
 
 COPY --chown=runner:docker --from=build /actions-runner .
 COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib/docker/cli-plugins/docker-buildx
 
+RUN mkdir -p /home/runner/.nuget
 RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner

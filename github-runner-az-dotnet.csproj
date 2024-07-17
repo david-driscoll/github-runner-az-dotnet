@@ -1,0 +1,213 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>github_runner_az_dotnet</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageDownload Include="Aspirant.Hosting.Yarp" Version="[0.0.4]" />
+    <PackageDownload Include="Aspire.Hosting" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.AppHost" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.Azure" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.Azure.ApplicationInsights" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.Azure.OperationalInsights" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.PostgreSQL" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.Redis" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.Hosting.Testing" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.StackExchange.Redis" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.StackExchange.Redis.DistributedCaching" Version="[8.0.2]" />
+    <PackageDownload Include="Aspire.StackExchange.Redis.OutputCaching" Version="[8.0.2]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.NpgSql" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.Publisher.ApplicationInsights"
+      Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.Uris" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.SassCompiler" Version="[1.77.8]" />
+    <PackageDownload Include="Azure.Extensions.AspNetCore.DataProtection.Blobs" Version="[1.3.4]" />
+    <PackageDownload Include="Azure.Extensions.AspNetCore.DataProtection.Keys" Version="[1.2.3]" />
+    <PackageDownload Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="[1.2.0]" />
+    <PackageDownload Include="Azure.Monitor.OpenTelemetry.Exporter" Version="[1.3.0]" />
+    <PackageDownload Include="Azure.ResourceManager.Authorization" Version="[1.1.3]" />
+    <PackageDownload Include="BouncyCastle.Cryptography" Version="[2.4.0]" />
+    <PackageDownload Include="DynamicData" Version="[8.4.1]" />
+    <PackageDownload Include="ediri.Azapi" Version="[1.12.2]" />
+    <PackageDownload Include="FusionAuth.Client" Version="[1.51.0]" />
+    <PackageDownload Include="Grpc.AspNetCore" Version="[2.63.0]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication"
+      Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.Extensions.Http.Resilience" Version="[8.6.0]" />
+    <PackageDownload Include="Microsoft.Extensions.Resilience" Version="[8.6.0]" />
+    <PackageDownload Include="Microsoft.Extensions.ServiceDiscovery" Version="[8.0.2]" />
+    <PackageDownload Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="[7.6.3]" />
+    <PackageDownload Include="Microsoft.NETFramework.ReferenceAssemblies" Version="[1.0.3]" />
+    <PackageDownload Include="Microsoft.SourceLink.GitHub" Version="[8.0.0]" />
+    <PackageDownload Include="NCronTab" Version="[3.3.3]" />
+    <PackageDownload Include="NetEvolve.Guard" Version="[1.4.63]" />
+    <PackageDownload Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="[1.9.0]" />
+    <PackageDownload Include="OpenTelemetry.Extensions.AzureMonitor" Version="[1.0.0-beta.4]" />
+    <PackageDownload Include="OpenTelemetry.Extensions.Hosting" Version="[1.9.0]" />
+    <PackageDownload Include="OpenTelemetry.Instrumentation.AspNetCore" Version="[1.9.0]" />
+    <PackageDownload Include="OpenTelemetry.Instrumentation.Http" Version="[1.9.0]" />
+    <PackageDownload Include="OpenTelemetry.Instrumentation.Runtime" Version="[1.9.0]" />
+    <PackageDownload Include="Polyfill" Version="[5.6.0]" />
+    <PackageDownload Include="Pulumi.Auth0" Version="[3.4.0]" />
+    <PackageDownload Include="Pulumi.Cloudflare" Version="[5.34.0]" />
+    <PackageDownload Include="Pulumi.Github" Version="[6.2.3]" />
+    <PackageDownload Include="Pulumi.Random" Version="[4.16.3]" />
+    <PackageDownload Include="Pulumi.Std" Version="[1.7.2]" />
+    <PackageDownload Include="Pulumi.Tls" Version="[5.0.4]" />
+    <PackageDownload Include="Pulumiverse.Purrl" Version="[0.5.0]" />
+    <PackageDownload Include="ReactiveUI" Version="[20.1.1]" />
+    <PackageDownload Include="ReactiveUI.Blazor" Version="[20.1.1]" />
+    <PackageDownload Include="Rocket.Surgery.Extensions" Version="[12.2.0]" />
+    <PackageDownload Include="Rocket.Surgery.MSBuild.CI" Version="[1.2.1]" />
+    <PackageDownload Include="Rocket.Surgery.MSBuild.GitVersion" Version="[1.2.1]" />
+    <PackageDownload Include="Rocket.Surgery.MSBuild.JetBrains.Annotations" Version="[1.2.1]" />
+    <PackageDownload Include="Rocket.Surgery.MSBuild.SourceLink" Version="[1.2.1]" />
+    <PackageDownload Include="Rocket.Surgery.OnePasswordNativeUnofficial" Version="[0.0.33]" />
+    <PackageDownload Include="Roslynator.Analyzers" Version="[4.12.4]" />
+    <PackageDownload Include="Roslynator.Formatting.Analyzers" Version="[4.12.4]" />
+    <PackageDownload Include="Roslynator.CodeAnalysis.Analyzers" Version="[4.12.4]" />
+    <PackageDownload Include="Roslynator.CodeFixes" Version="[4.12.4]" />
+    <PackageDownload Include="Roslynator.Refactorings" Version="[4.12.4]" />
+    <PackageDownload Include="JetBrains.ExternalAnnotations" Version="[10.2.149]" />
+    <PackageDownload Include="Serilog.Sinks.OpenTelemetry" Version="[3.0.0]" />
+    <PackageDownload Include="MudBlazor" Version="[7.2.0]" />
+    <PackageDownload Include="MudBlazor.ThemeManager" Version="[2.0.0]" />
+    <PackageDownload Include="Xunit.Extensions.AssemblyFixture" Version="[2.6.0]" />
+    <PackageDownload Include="Yarp.ReverseProxy" Version="[2.1.0]" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <PackageDownload Include="GitVersion.Tool" Version="[6.0.0-beta.7]" /> -->
+    <PackageDownload Include="JetBrains.ReSharper.GlobalTools" Version="[2024.1.4]" />
+    <PackageDownload Include="Nuke.Common" Version="[8.0.0]" />
+    <PackageDownload Include="ReportGenerator" Version="[5.3.7]" />
+    <PackageDownload Include="Rocket.Surgery.Nuke" Version="[1.8.36]" />
+    <PackageDownload Include="Azure.Deployments.Expression" Version="[1.71.0]" />
+    <PackageDownload Include="Pulumi" Version="[3.64.0]" />
+    <PackageDownload Include="Pulumi.AzureNative" Version="[2.49.1]" />
+    <PackageDownload Include="Pulumi.Command" Version="[4.5.0]" />
+    <PackageDownload Include="Pulumiverse.Time" Version="[0.0.17]" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <PackageDownload Include="Rocket.Surgery.CommandLine" Version="[14.0.1-beta.8]" />
+    <PackageDownload Include="Rocket.Surgery.Conventions.DryIoc" Version="[14.0.1-beta.8]" />
+    <PackageDownload Include="Rocket.Surgery.Conventions.Configuration.Yaml" Version="[14.0.1-beta.8]"
+    />
+    <PackageDownload Include="Rocket.Surgery.WebAssembly.Hosting" Version="[14.0.1-beta.8]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.AspNetCore" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.AspNetCore.Blazor" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.AspNetCore.Testing" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Mapping" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Mapping.NewtonsoftJson"
+      Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Foundation" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Foundation.NewtonsoftJson"
+      Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Serilog" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Spatial" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Spatial.NewtonsoftJson"
+      Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Grpc" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Hosting" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.StrawberryShake" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.StrawberryShake.Spatial"
+      Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.HotChocolate" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Telemetry" Version="[2.0.1-beta.9]" />
+    <PackageDownload Include="Rocket.Surgery.LaunchPad.Testing" Version="[2.0.1-beta.9]" /> -->
+    <PackageDownload Include="Rocket.Surgery.Blazor.FontAwesome6" Version="[2.1.2]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.AzureKeyVault" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.Network" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.RavenDB" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.Redis" Version="[8.0.1]" />
+    <PackageDownload Include="AspNetCore.HealthChecks.System" Version="[8.0.1]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="[8.0.6]" />
+    <PackageDownload Include="StronglyTypedId" Version="[1.0.0-beta08]" />
+    <PackageDownload Include="NodaTime" Version="[3.1.11]" />
+    <PackageDownload Include="NodaTime.Testing" Version="[3.1.11]" />
+    <!-- <PackageDownload Include="HotChocolate.AspNetCore" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.AspNetCore.Authorization" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Data" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Data.Raven" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Types" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Types.Analyzers" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Types.CursorPagination" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Types.NodaTime" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.PersistedQueries.Redis" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Subscriptions.Redis" Version="[14.0.0-p.124]" /> -->
+    <!-- <PackageDownload Include="HotChocolate.Types.OffsetPagination" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Types.Spatial" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="HotChocolate.Data.Spatial" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="StrawberryShake.Transport.Http" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="StrawberryShake.Transport.WebSockets" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="StrawberryShake.Server" Version="[14.0.0-p.124]" />
+    <PackageDownload Include="StrawberryShake.Blazor" Version="[14.0.0-p.124]" /> -->
+    <PackageDownload Include="BeaKona.AutoInterfaceGenerator" Version="[1.0.42]" />
+    <PackageDownload Include="Humanizer.Core" Version="[2.14.1]" />
+    <PackageDownload Include="RavenDB.Client" Version="[6.0.104]" />
+    <PackageDownload Include="RavenDB.Client.NodaTime" Version="[6.0.104]" />
+    <PackageDownload Include="NetTopologySuite" Version="[2.5.0]" />
+    <PackageDownload Include="Polly" Version="[8.4.1]" />
+    <PackageDownload Include="System.Reactive" Version="[6.0.1]" />
+    <PackageDownload Include="System.Interactive" Version="[6.0.1]" />
+    <PackageDownload Include="System.Interactive.Async" Version="[6.0.1]" />
+    <PackageDownload Include="Rocket.Surgery.Linq.Extensions" Version="[12.2.0]" />
+    <PackageDownload Include="Rocket.Surgery.Reactive.Extensions" Version="[12.2.0]" />
+    <PackageDownload Include="Microsoft.Extensions.Logging.AzureAppServices" Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.Azure.StackExchangeRedis" Version="[3.1.0]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Components.Authorization" Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Components.WebAssembly" Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"
+      Version="[8.0.6]" />
+    <PackageDownload Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="[8.0.6]" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageDownload Include="Azure.Identity" Version="[1.12.0]" />
+    <PackageDownload Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="[1.3.1]" />
+    <PackageDownload Include="Microsoft.Extensions.FileProviders.Embedded" Version="[8.0.6]" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageDownload Include="Microsoft.CodeAnalysis.Analyzers" Version="[3.3.4]" />
+    <PackageDownload Include="Microsoft.CodeAnalysis.Common" Version="[4.10.0]" />
+    <PackageDownload Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="[4.10.0]" />
+    <PackageDownload Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="[4.10.0]" />
+    <PackageDownload Include="Microsoft.CodeAnalysis.Features" Version="[4.10.0]" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageDownload Include="Bogus" Version="[35.5.1]" />
+    <PackageDownload Include="coverlet.collector" Version="[6.0.2]" />
+    <PackageDownload Include="coverlet.msbuild" Version="[6.0.2]" />
+    <PackageDownload Include="NSubstitute" Version="[5.1.0]" />
+    <PackageDownload Include="NSubstitute.Analyzers.CSharp" Version="[1.0.17]" />
+    <PackageDownload Include="FluentAssertions" Version="[6.12.0]" />
+    <PackageDownload Include="FluentAssertions.Analyzers" Version="[0.33.0]" />
+    <PackageDownload Include="Microsoft.NET.Test.Sdk" Version="[17.10.0]" />
+    <!-- <PackageDownload Include="Rocket.Surgery.Extensions.Testing.NSubstitute"
+    Version="[8.1.0-next.1]" />
+    <PackageDownload Include="Rocket.Surgery.Extensions.Testing.XUnit" Version="[8.1.0-next.1]" />
+    <PackageDownload Include="Rocket.Surgery.Extensions.Testing.SourceGenerators"
+    Version="[8.1.0-next.1]" /> -->
+    <PackageDownload Include="xunit" Version="[2.9.0]" />
+    <PackageDownload Include="xunit.core" Version="[2.9.0]" />
+    <PackageDownload Include="xunit.analyzers" Version="[1.15.0]" />
+    <PackageDownload Include="xunit.runner.visualstudio" Version="[2.8.2]" />
+    <PackageDownload Include="xunit.extensibility.core" Version="[2.9.0]" />
+    <PackageDownload Include="xunit.extensibility.execution" Version="[2.9.0]" />
+    <PackageDownload Include="Verify.Xunit" Version="[25.3.1]" />
+    <PackageDownload Include="Verify.NodaTime" Version="[2.1.0]" />
+    <PackageDownload Include="Verify.SourceGenerators" Version="[2.2.0]" />
+    <PackageDownload Include="Verify.DiffPlex" Version="[3.1.0]" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageDownload Include="Microsoft.Reactive.Testing" Version="[6.0.1]" />
+    <PackageDownload Include="ReactiveUI.Testing" Version="[20.1.1]" />
+  </ItemGroup>
+
+</Project>

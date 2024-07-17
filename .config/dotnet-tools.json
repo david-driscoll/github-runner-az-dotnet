@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "nuke.globaltool": {
+      "version": "8.0.0",
+      "commands": ["nuke"],
+      "rollForward": false
+    },
+    "codecov.tool": {
+      "version": "1.13.0",
+      "commands": ["codecov"],
+      "rollForward": false
+    },
+    "jetbrains.resharper.globaltools": {
+      "version": "2024.1.4",
+      "commands": ["jb"],
+      "rollForward": false
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "5.3.8",
+      "commands": ["reportgenerator"],
+      "rollForward": false
+    },
+    "dotnet-outdated-tool": {
+      "version": "4.6.4",
+      "commands": ["dotnet-outdated"],
+      "rollForward": false
+    },
+    "rocket.surgery.blazor.fontawesome.tool": {
+      "version": "2.1.2",
+      "commands": ["font-awesome"],
+      "rollForward": false
+    }
+  }
+}
