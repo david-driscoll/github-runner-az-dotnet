@@ -71,7 +71,7 @@ RUN ARCH="amd64" \
     && chmod g+s /usr/local/bin/op \
     && op update
 
-ENV NUGET_PACKAGES "/nuget"
+# ENV NUGET_PACKAGES "/nuget"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV RUNNER_MANUALLY_TRAP_SIG=1
