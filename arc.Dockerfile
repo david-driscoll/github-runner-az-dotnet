@@ -4,7 +4,7 @@ ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
 
 # renovate: datasource=github-releases depName=runner packageName=actions/runner
-ARG RUNNER_VERSION=2.317.0
+ARG RUNNER_VERSION=2.318.0
 ARG RUNNER_ARCH="x64"
 # renovate: datasource=github-releases depName=actions/runner-container-hooks packageName=actions/runner-container-hooks
 ARG RUNNER_CONTAINER_HOOKS_VERSION=0.6.1
