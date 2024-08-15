@@ -60,7 +60,7 @@ jobs:
       #   with:
       #     file: ./Dockerfile
       #     context: .
-      #     push: true
+      #     push: ${{ github.ref_name == 'main' }}
       #     tags: daviddriscoll/github-runner-az-dotnet:latest
 
       - name: Build and push Arc
