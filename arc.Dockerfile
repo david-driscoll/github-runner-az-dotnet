@@ -50,8 +50,8 @@ ENV OP_VERSION=2.29.0
 ENV DOTNET_SDK_VERSION=8.0.402
 
 ENV NVM_DIR=/home/runner/.nvm
-ENV DOTNET_ROOT "/usr/share/dotnet"
-ENV PATH "$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
+ENV DOTNET_ROOT="/usr/share/dotnet"
+ENV PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update \
     && apt install software-properties-common -y \
