@@ -93,7 +93,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          annotations: manifest:org.opencontainers.image.title=github-runner-az-dotnet
+          annotations: org.opencontainers.image.title=zitadel-for-testing-only
           # list of Docker images to use as base name for tags
           images: |
             daviddriscoll/zitadel-for-testing-only
