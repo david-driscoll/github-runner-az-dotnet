@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - "main"
   pull_request:
     branches:
-      - 'main'
+      - "main"
 
 concurrency:
   group: ${{ github.ref_name || 'ci' }}
@@ -45,7 +45,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            daviddriscoll/github-arc-runner-az-dotnet
+            daviddriscoll/zitadel-for-testing-only
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
