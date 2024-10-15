@@ -24,8 +24,23 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Docker meta
-        id: meta
+      - name: Docker arc meta
+        id: arc-meta
+        uses: docker/metadata-action@v5
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            daviddriscoll/github-arc-runner-az-dotnet
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+
+      - name: Docker zitadel meta
+        id: zitadel-meta
         uses: docker/metadata-action@v5
         with:
           # list of Docker images to use as base name for tags
@@ -68,8 +83,18 @@ jobs:
           file: ./arc.Dockerfile
           context: .
           push: ${{ github.ref_name == 'main' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.arc-meta.outputs.tags }}
+          labels: ${{ steps.arc-meta.outputs.labels }}
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Build and push Zitadel
+        id: zitadel_build
+        uses: docker/build-push-action@v6
+        with:
+          file: ./zitadel.Dockerfile
+          context: .
+          push: ${{ github.ref_name == 'main' }}
+          tags: ${{ steps.zitadel-meta.outputs.tags }}
+          labels: ${{ steps.zitadel-meta.outputs.labels }}
+
+      # - name: Image digest
+      #   run: echo ${{ steps.docker_build.outputs.digest }}
