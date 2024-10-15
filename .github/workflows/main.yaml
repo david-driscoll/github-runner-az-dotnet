@@ -93,7 +93,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          annotations: org.opencontainers.image.title=zitadel-for-testing-only
+          labels: |
+            org.opencontainers.image.title=zitadel-for-testing-only
           # list of Docker images to use as base name for tags
           images: |
             daviddriscoll/zitadel-for-testing-only
