@@ -106,15 +106,15 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
 
-      # - name: Build and push Zitadel
-      #   id: build
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     file: ./zitadel.Dockerfile
-      #     context: .
-      #     push: ${{ github.ref_name == 'main' }}
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
+      - name: Build and push Zitadel
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          file: ./zitadel.Dockerfile
+          context: .
+          push: ${{ github.ref_name == 'main' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Imageid
         run: echo ${{ steps.build.outputs.imageid }}
