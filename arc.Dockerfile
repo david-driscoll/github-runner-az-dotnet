@@ -69,7 +69,6 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire \
     && dotnet dev-certs https \
-    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
     && update-ca-certificates
     # && dotnet restore \
     # && dotnet tool restore \
