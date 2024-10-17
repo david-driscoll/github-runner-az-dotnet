@@ -47,7 +47,7 @@ ENV NVM_VERSION=0.40.1
 ENV PWSH_VERSION=7.4.5
 ENV OP_VERSION=2.29.0
 # renovate: datasource=github-tags depName=dotnet-sdk packageName=dotnet/sdk
-ENV DOTNET_SDK_VERSION=8.0.402
+ENV DOTNET_SDK_VERSION=8.0.403
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT="/usr/share/dotnet"
@@ -69,7 +69,6 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire \
     && dotnet dev-certs https \
-    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
     && update-ca-certificates
     # && dotnet restore \
     # && dotnet tool restore \
