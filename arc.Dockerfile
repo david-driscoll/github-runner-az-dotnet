@@ -67,13 +67,10 @@ RUN apt update \
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
-    && dotnet workload install aspire \
-    && dotnet dev-certs https \
+    && dotnet workload install aspire
+RUN dotnet dev-certs https \
     && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
     && update-ca-certificates
-    # && dotnet restore \
-    # && dotnet tool restore \
-    # && rm -rf /.temp
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
