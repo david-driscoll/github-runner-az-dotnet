@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy as build
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0 AS build
 
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
@@ -37,7 +37,7 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
     "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-${TARGETARCH}" \
     && chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.10.0
@@ -54,11 +54,7 @@ ENV DOTNET_ROOT="/usr/share/dotnet"
 ENV PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update \
-    && apt install software-properties-common -y \
-    && add-apt-repository ppa:git-core/ppa \
-    && apt update \
-    && apt install unzip wget curl tree sudo git netcat lsof -y
-
+    && apt install software-properties-common unzip wget curl tree sudo git lsof ca-certificates -y
 
 # WORKDIR /.temp
 # COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
@@ -68,6 +64,12 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
+RUN dotnet dev-certs https \
+    && update-ca-certificates \
+    && dotnet dev-certs https --trust \
+    && mkdir -p /usr/local/share/ca-certificates/aspnet/ \
+    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM --verbose \
+    && update-ca-certificates
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
@@ -104,11 +106,6 @@ RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner
 
-RUN dotnet dev-certs https \
-    && dotnet dev-certs https --trust \
-    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
-    && update-ca-certificates
-
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
     && . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION} \
     && . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION} \
@@ -116,4 +113,4 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/instal
     && node --version && npm --version && npx --version
 
 # modify actions runner binaries to allow custom cache server implementation
-RUN sed -i 's/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x43\x00\x41\x00\x43\x00\x48\x00\x45\x00\x5F\x00\x55\x00\x52\x00\x4C\x00/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x43\x00\x41\x00\x43\x00\x48\x00\x45\x00\x5F\x00\x4F\x00\x52\x00\x4C\x00/g' /home/runner/bin/Runner.Worker.dll
+# RUN sed -i 's/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x43\x00\x41\x00\x43\x00\x48\x00\x45\x00\x5F\x00\x55\x00\x52\x00\x4C\x00/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x43\x00\x41\x00\x43\x00\x48\x00\x45\x00\x5F\x00\x4F\x00\x52\x00\x4C\x00/g' /home/runner/bin/Runner.Worker.dll
