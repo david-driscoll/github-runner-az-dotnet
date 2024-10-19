@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0 AS build
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-noble AS build
 
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
@@ -37,7 +37,7 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
     "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-${TARGETARCH}" \
     && chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-noble
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.10.0
@@ -54,7 +54,7 @@ ENV DOTNET_ROOT="/usr/share/dotnet"
 ENV PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:$PATH"
 
 RUN apt update \
-    && apt install software-properties-common unzip wget curl tree sudo git lsof ca-certificates -y
+    && apt install software-properties-common unzip wget curl tree sudo git lsof -y
 
 # WORKDIR /.temp
 # COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
@@ -65,7 +65,6 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
 RUN dotnet dev-certs https \
-    && update-ca-certificates \
     && dotnet dev-certs https --trust \
     && mkdir -p /usr/local/share/ca-certificates/aspnet/ \
     && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM --verbose \
