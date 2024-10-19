@@ -68,10 +68,6 @@ RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
-RUN dotnet dev-certs https \
-    && dotnet dev-certs https --trust \
-    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
-    && update-ca-certificates
 
 RUN ARCH="amd64" \
     && wget "https://cache.agilebits.com/dist/1P/op2/pkg/v$OP_VERSION/op_linux_${ARCH}_v$OP_VERSION.zip" -O op.zip \
@@ -107,6 +103,11 @@ COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib
 RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner
+
+RUN dotnet dev-certs https \
+    && dotnet dev-certs https --trust \
+    && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
+    && update-ca-certificates
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
     && . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION} \
