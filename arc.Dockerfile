@@ -40,14 +40,14 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
 FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
-ENV NODE_VERSION=22.9.0
+ENV NODE_VERSION=22.10.0
 # renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.40.1
 # renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.4.5
 ENV OP_VERSION=2.29.0
 # renovate: datasource=github-tags depName=dotnet-sdk packageName=dotnet/sdk
-ENV DOTNET_SDK_VERSION=8.0.402
+ENV DOTNET_SDK_VERSION=8.0.403
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT="/usr/share/dotnet"
@@ -67,8 +67,8 @@ RUN apt update \
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
-    && dotnet workload install aspire
-RUN dotnet dev-certs https \
+    && dotnet workload install aspire \
+    && dotnet dev-certs https \
     && dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM \
     && update-ca-certificates
 
