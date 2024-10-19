@@ -56,7 +56,7 @@ ENV PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:${NVM_DIR}/:${NVM_DIR}/versions/node/v
 RUN apt update \
     && apt install software-properties-common unzip wget curl tree sudo git lsof -y
 
-# WORKDIR /.temp
+WORKDIR /temp-build/
 # COPY ./github-runner-az-dotnet.csproj ./github-runner-az-dotnet.csproj
 # Copy ./.config/dotnet-tools.json ./.config/dotnet-tools.json
 
@@ -104,6 +104,9 @@ COPY --from=build /usr/local/lib/docker/cli-plugins/docker-buildx /usr/local/lib
 RUN install -o root -g root -m 755 docker/* /usr/bin/ && rm -rf docker
 
 USER runner
+
+RUN dotnet tool install linux-dev-certs --create-manifest-if-needed \
+    && dotnet linux-dev-certs install
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
     && . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION} \
