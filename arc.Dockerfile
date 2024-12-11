@@ -61,7 +61,7 @@ WORKDIR /temp-build/
 # Copy ./.config/dotnet-tools.json ./.config/dotnet-tools.json
 
 RUN curl -sL https://aka.ms/InstallAzureCliDeb | sudo bash \
-    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
+    && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir ${DOTNET_ROOT} \
     && curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0 --install-dir ${DOTNET_ROOT} --version ${DOTNET_SDK_VERSION} \
     && dotnet tool install --global PowerShell \
     && dotnet workload install aspire
