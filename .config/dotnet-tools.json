@@ -28,7 +28,7 @@
       "rollForward": false
     },
     "rocket.surgery.blazor.fontawesome.tool": {
-      "version": "2.1.8",
+      "version": "2.1.9",
       "commands": ["font-awesome"],
       "rollForward": false
     }
