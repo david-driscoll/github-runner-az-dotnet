@@ -82,6 +82,12 @@ RUN ARCH="amd64" \
     && chmod g+s /usr/local/bin/op \
     && op update
 
+RUN ARCH="amd64" \
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/${ARCH}" \
+    && chmod +x mkcert-v*-linux-${ARCH} \
+    && cp mkcert-v*-linux-${ARCH} /usr/local/bin/mkcert \
+    && mkcert -install
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV RUNNER_MANUALLY_TRAP_SIG=1
 ENV ACTIONS_RUNNER_PRINT_LOG_TO_STDOUT=1
