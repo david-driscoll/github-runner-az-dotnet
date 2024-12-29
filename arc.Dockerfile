@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-noble AS build
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble AS build
 
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
