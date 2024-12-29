@@ -37,7 +37,7 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
     "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-${RUNNER_ARCH}" \
     && chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-noble
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.12.0
