@@ -40,7 +40,7 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
 FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
-ENV NODE_VERSION=22.13.0
+ENV NODE_VERSION=22.13.1
 # renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.40.1
 # renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
