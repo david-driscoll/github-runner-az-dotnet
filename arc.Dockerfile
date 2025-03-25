@@ -9,7 +9,7 @@ ARG RUNNER_ARCH="x64"
 # renovate: datasource=github-releases depName=actions/runner-container-hooks packageName=actions/runner-container-hooks
 ARG RUNNER_CONTAINER_HOOKS_VERSION=0.6.2
 # renovate: datasource=docker packageName=docker versioning=docker
-ARG DOCKER_VERSION=28.0.2
+ARG DOCKER_VERSION=28.0.4
 # renovate: datasource=github-releases depName=buildx packageName=docker/buildx
 ARG BUILDX_VERSION=0.22.0
 
