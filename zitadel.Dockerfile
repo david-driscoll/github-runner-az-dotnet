@@ -1,4 +1,4 @@
-FROM ghcr.io/zitadel/zitadel:v2.71.9@sha256:164937018ace71b77f7c0de609dffcdd0f3ff6779700f1982029e045088c5c74
+FROM ghcr.io/zitadel/zitadel:v3.0.0@sha256:fe5371eac4f49695ad9488367809bba7b3bba389c218836acfca39ec49701872
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD true
