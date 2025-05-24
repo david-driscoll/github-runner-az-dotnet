@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble@sha256:73c874bc3c12db34fca565af2617c5426137efc12842a004432fe3954d080c8d AS build
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble@sha256:4dd82b2866ce5a934b6fcae947cca2cf627502c551e62a65d25e7b0f7b31afde AS build
 
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
@@ -37,7 +37,7 @@ RUN export RUNNER_ARCH=${TARGETARCH} \
     "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-${RUNNER_ARCH}" \
     && chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble@sha256:73c874bc3c12db34fca565af2617c5426137efc12842a004432fe3954d080c8d
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble@sha256:4dd82b2866ce5a934b6fcae947cca2cf627502c551e62a65d25e7b0f7b31afde
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.16.0
