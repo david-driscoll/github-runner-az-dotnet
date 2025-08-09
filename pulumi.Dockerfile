@@ -97,11 +97,24 @@ RUN \
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
+# Install Java
+# https://learn.microsoft.com/en-gb/java/openjdk/install
+ RUN curl https://packages.microsoft.com/config/debian/$(lsb_release -rs)/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+  dpkg -i packages-microsoft-prod.deb && \
+  rm packages-microsoft-prod.deb
+
+RUN apt-get update -y && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  msopenjdk-21 \
+  gradle \
+  maven && \
+  rm -rf /var/lib/apt/lists/*
+
 # Install dotnet 8.0 and 9.0 using instructions from:
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir /usr/local/share/dotnet
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 9.0 --install-dir /usr/local/share/dotnet
-RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --quality --install-dir /usr/local/share/dotnet
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir /usr/local/share/dotnet
 ENV PATH "/usr/local/share/dotnet:${PATH}"
 ENV DOTNET_ROOT /usr/local/share/dotnet
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT 1
@@ -117,6 +130,40 @@ ENV XDG_CACHE_HOME=/root/.cache
 RUN curl -L https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash && \
   helm repo add stable https://charts.helm.sh/stable && \
   helm repo update
+
+# Python
+# Install Pyenv and preinstall supported Python versions
+RUN git clone --depth=1 https://github.com/pyenv/pyenv.git /usr/local/share/pyenv
+ENV PYENV_ROOT /usr/local/share/pyenv
+ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+RUN pyenv install 3.13
+RUN pyenv install 3.12
+RUN pyenv install 3.11
+RUN pyenv install 3.10
+RUN pyenv install 3.9
+RUN pyenv global 3.12 # Default version
+# Poetry
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/share/pypoetry python3 -
+RUN ln -s /usr/local/share/pypoetry/bin/poetry /usr/local/bin/
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | XDG_BIN_HOME=/usr/local/share/uv bash -s -- --no-modify-path
+RUN ln -s /usr/local/share/uv/uv /usr/local/bin/
+RUN ln -s /usr/local/share/uv/uvx /usr/local/bin/
+
+# Install default nodejs versions and associated tools
+RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/usr/local/share/fnm" --skip-shell && \
+  ln -s /usr/local/share/fnm/fnm /usr/local/bin/fnm
+ENV FNM_COREPACK_ENABLED="true"
+ENV FNM_VERSION_FILE_STRATEGY="recursive"
+ENV FNM_DIR=/usr/local/share/fnm
+RUN fnm install 20 && \
+  fnm install 22 && \
+  fnm install 23 && \
+  fnm install 24 && \
+  fnm alias 24 default
+ENV PATH=/usr/local/share/fnm/aliases/default/bin:$PATH
+RUN npm install -g corepack bun && \
+    corepack install -g pnpm yarn@1
 
 # Passing --build-arg PULUMI_VERSION=vX.Y.Z will use that version
 # of the SDK. Otherwise, we use whatever get.pulumi.com thinks is
