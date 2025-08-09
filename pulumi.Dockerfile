@@ -114,6 +114,7 @@ RUN apt-get update -y && \
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir /usr/local/share/dotnet
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 9.0 --install-dir /usr/local/share/dotnet
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --quality preview --install-dir /usr/local/share/dotnet
 ENV PATH "/usr/local/share/dotnet:${PATH}"
 ENV DOTNET_ROOT /usr/local/share/dotnet
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT 1
