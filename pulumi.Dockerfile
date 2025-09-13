@@ -113,14 +113,16 @@ RUN apt-get update -y && \
 
 # Install dotnet 8.0 and 9.0 using instructions from:
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
-RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir /usr/local/share/dotnet
-RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 9.0 --install-dir /usr/local/share/dotnet
-RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir /usr/local/share/dotnet
+RUN \
+  curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 --install-dir /usr/local/share/dotnet && \
+  curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 9.0 --install-dir /usr/local/share/dotnet && \
+  curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir /usr/local/share/dotnet
 ENV PATH "/usr/local/share/dotnet:${PATH}"
 ENV DOTNET_ROOT /usr/local/share/dotnet
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT 1
 # Allow newer dotnet version (e.g. 6) to build projects targeting older frameworks (v3.1)
 ENV DOTNET_ROLL_FORWARD Major
+RUN dotnet workload update
 
 # Install Helm
 # Explicitly set env variables that helm reads to their defaults, so that subsequent calls to
