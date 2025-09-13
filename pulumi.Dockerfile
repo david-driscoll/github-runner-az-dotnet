@@ -40,6 +40,7 @@ RUN apt-get update -y && \
   software-properties-common \
   unzip  \
   wget \
+  postgresql-client \
   xz-utils \
   zlib1g-dev && \
   rm -rf /var/lib/apt/lists/*
