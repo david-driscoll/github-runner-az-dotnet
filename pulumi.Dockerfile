@@ -2,7 +2,7 @@ FROM golang:1.25-bookworm@sha256:c423747fbd96fd8f0b1102d947f51f9b266060217478e5f
 
 RUN go install sigs.k8s.io/aws-iam-authenticator/cmd/aws-iam-authenticator@v0.7.4
 
-FROM debian:12 AS base
+FROM debian:13@sha256:fd8f5a1df07b5195613e4b9a0b6a947d3772a151b81975db27d47f093f60c6e6 AS base
 
 # These values are passed in by the build system automatically. The options are: arm64, amd64
 # See: https://docs.docker.com/build/building/variables/#pre-defined-build-arguments
