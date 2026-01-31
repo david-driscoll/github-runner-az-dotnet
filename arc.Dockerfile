@@ -42,7 +42,7 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-noble@sha256:0603f84792661619d785
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=24.13.0
 # renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
-ENV NVM_VERSION=0.40.3
+ENV NVM_VERSION=0.40.4
 # renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
 ENV PWSH_VERSION=7.5.4
 ENV OP_VERSION=2.29.0
