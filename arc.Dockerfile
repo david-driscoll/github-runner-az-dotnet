@@ -7,7 +7,7 @@ ARG TARGETARCH="amd64"
 ARG RUNNER_VERSION=2.331.0
 ARG RUNNER_ARCH="x64"
 # renovate: datasource=github-releases depName=actions/runner-container-hooks packageName=actions/runner-container-hooks
-ARG RUNNER_CONTAINER_HOOKS_VERSION=0.8.0
+ARG RUNNER_CONTAINER_HOOKS_VERSION=0.8.1
 # renovate: datasource=docker packageName=docker versioning=docker
 ARG DOCKER_VERSION=29.2.1
 # renovate: datasource=github-releases depName=buildx packageName=docker/buildx
