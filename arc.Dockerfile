@@ -47,7 +47,7 @@ ENV NVM_VERSION=0.40.4
 ENV PWSH_VERSION=7.5.4
 ENV OP_VERSION=2.29.0
 # renovate: datasource=github-tags depName=dotnet-sdk packageName=dotnet/sdk
-ENV DOTNET_SDK_VERSION=10.0.102
+ENV DOTNET_SDK_VERSION=10.0.103
 
 ENV NVM_DIR=/home/runner/.nvm
 ENV DOTNET_ROOT="/usr/share/dotnet"
