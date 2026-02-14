@@ -1,4 +1,4 @@
-FROM myoung34/github-runner:latest@sha256:405f3e487f1c331f59991814d5e8a223a27103bcc216e0ef9dff7d5d8f932e0d
+FROM myoung34/github-runner:latest@sha256:943b1d56a54644174873b91c4c324d09527eee6d4cede5318924ad61810cdfaa
 
 # renovate: datasource=github-tags depName=node packageName=nodejs/node versioning=node
 ENV NODE_VERSION=22.3.0
