@@ -44,7 +44,7 @@ ENV NODE_VERSION=24.14.0
 # renovate: datasource=github-releases depName=nvm packageName=nvm-sh/nvm
 ENV NVM_VERSION=0.40.4
 # renovate: datasource=github-releases depName=powershell packageName=PowerShell/PowerShell
-ENV PWSH_VERSION=7.5.4
+ENV PWSH_VERSION=7.5.5
 ENV OP_VERSION=2.29.0
 # renovate: datasource=github-tags depName=dotnet-sdk packageName=dotnet/sdk
 ENV DOTNET_SDK_VERSION=10.0.102
