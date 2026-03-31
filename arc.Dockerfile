@@ -11,7 +11,7 @@ ARG RUNNER_CONTAINER_HOOKS_VERSION=0.8.1
 # renovate: datasource=docker packageName=docker versioning=docker
 ARG DOCKER_VERSION=29.3.1
 # renovate: datasource=github-releases depName=buildx packageName=docker/buildx
-ARG BUILDX_VERSION=0.32.1
+ARG BUILDX_VERSION=0.33.0
 
 RUN apt update -y && apt install curl unzip -y
 
