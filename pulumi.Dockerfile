@@ -1,4 +1,4 @@
-FROM golang:1.26-bookworm@sha256:09f72a3e4d00f209358f03b93e4d62e6ed45b786569c2d97e83cb7cbaaed15f2 as builder
+FROM golang:1.26-bookworm@sha256:4f4ab2c90005e7e63cb631f0b4427f05422f241622ee3ec4727cc5febbf83e34 as builder
 
 RUN go install sigs.k8s.io/aws-iam-authenticator/cmd/aws-iam-authenticator@v0.7.4
 
